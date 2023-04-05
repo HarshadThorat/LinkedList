@@ -1,0 +1,108 @@
+
+class Node<T>
+{
+    public T data;
+    public Node next;
+
+    public Node(T No)
+    {
+        data = No;
+        next = null;
+    }
+}
+
+class LinkList<T>
+{
+    public Node First;
+
+    public LinkList()
+    {
+        First = null;   
+    } 
+
+    public void Push(T no)        //InsertFirst
+    {
+        Node newn = new Node(no);
+
+        if(First == null)
+        {
+            First = newn;
+        }
+        else
+        {
+            newn.next = First;
+            First = newn;
+        }
+    }
+
+    public void Pop()               //DeleteFirst
+    {
+        if(First == null)
+        {
+            System.out.println("Unable Poped elements as stack is empty");
+            return;
+        }
+        else
+        {
+            First = First.next;
+        }
+    }
+
+    public void Display()
+    {
+        if(First == null)
+        {
+            System.out.println("stack is empty");
+        }
+        else
+        {
+            System.out.println("Elements of the Stack are : ");
+            Node temp = First;
+
+            while(temp != null)
+            {
+                System.out.print(" | "+temp.data+" |-> "); 
+                temp = temp.next;
+            }
+            System.out.println("null");
+        }
+    }
+
+    public int Count()
+    {
+        int iCnt = 0;
+
+        Node temp = First;
+
+        while(temp != null)
+        {
+            iCnt++;
+            temp = temp.next;
+        }
+        return iCnt;
+    }
+}
+
+
+
+class GenericStack
+{
+    public static void main(String arg[])
+    {
+        LinkList <Integer>obj = new LinkList<Integer>();
+
+        obj.Push(101);
+        obj.Push(51);
+        obj.Push(21);
+        obj.Push(11);
+        obj.Display();
+        int ret = obj.Count();
+        System.out.println("Number of elements are :  "+ret);
+
+        obj.Pop();
+        obj.Display();
+        ret = obj.Count();
+        System.out.println("Number of elements are :  "+ret);
+
+    }
+}
